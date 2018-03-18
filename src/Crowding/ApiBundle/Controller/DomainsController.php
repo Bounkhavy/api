@@ -8,12 +8,13 @@ use Crowding\ApiBundle\Entity\Domains;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DomainsController extends FOSRestController
 {
     /**
-     * @Rest\Get("/user")
+     * @Rest\Get("/domains.json")
      */
     public function showAction()
     {
@@ -21,9 +22,14 @@ class DomainsController extends FOSRestController
         $repository = $this->getDoctrine()->getRepository('ApiBundle:Domain');
 
         $domain = $repository->findAll();
+/*         $view = $this->view($domain, Response::HTTP_OK);
+        return $view;
+ */        
+ $view = $this->view($domain, 200);
 
+        // ...
 
-        return $domain;
+        return $this->handleView($view);
 
     }
 }

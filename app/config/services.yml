@@ -29,6 +29,8 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    sensio_framework_extra.view.listener:
+        alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

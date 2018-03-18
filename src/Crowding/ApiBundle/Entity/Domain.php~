@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Domain
  *
- * @ORM\Table(name="domain", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_A7A91E0B989D9B62", columns={"slug"})}, indexes={@ORM\Index(name="IDX_A7A91E0BA76ED395", columns={"user_id"})})
+ * @ORM\Table(name="domain")
  * @ORM\Entity
  */
 class Domain
@@ -47,40 +47,145 @@ class Domain
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
-
+    private $id_user;
     /**
-     * @var \Crowding\ApiBundle\Entity\User
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Crowding\ApiBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
+    * @ORM\Column(name="id", type="integer",nullable=false)
+    */
     private $user;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Crowding\ApiBundle\Entity\Lang", inversedBy="domain")
-     * @ORM\JoinTable(name="domain_lang",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="domain_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="lang_id", referencedColumnName="code")
-     *   }
-     * )
-     */
-    private $lang;
+
 
     /**
-     * Constructor
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Domain
      */
-    public function __construct()
+    public function setName($name)
     {
-        $this->lang = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->name = $name;
+
+        return $this;
     }
 
-}
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Domain
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Domain
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Domain
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set Id_user
+     *
+     *
+     * @return Domain
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get Id_user
+     *
+     * @return \Crowding\ApiBundle\Entity\User
+     */
+    public function getIdUSer()
+    {
+        return $this->idUser;
+    }
+
+
+
+}

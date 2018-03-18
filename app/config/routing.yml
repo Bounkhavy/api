@@ -1,5 +1,5 @@
 api:
-    resource: "@ApiBundle/Resources/config/routing.xml"
+    resource: "@ApiBundle/Controller"
     prefix:   /api
 
 app:

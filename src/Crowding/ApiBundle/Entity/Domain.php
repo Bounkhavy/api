@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Domain
  *
- * @ORM\Table(name="domain", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_A7A91E0B989D9B62", columns={"slug"})}, indexes={@ORM\Index(name="IDX_A7A91E0BA76ED395", columns={"user_id"})})
+ * @ORM\Table(name="domain")
  * @ORM\Entity
  */
 class Domain
@@ -48,39 +48,13 @@ class Domain
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
-     * @var \Crowding\ApiBundle\Entity\User
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Crowding\ApiBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
-    private $user;
+    * @ORM\Column(name="user_id", type="integer",nullable=false)
+    */
+    private $user_id;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Crowding\ApiBundle\Entity\Lang", inversedBy="domain")
-     * @ORM\JoinTable(name="domain_lang",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="domain_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="lang_id", referencedColumnName="code")
-     *   }
-     * )
-     */
-    private $lang;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->lang = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -190,60 +164,27 @@ class Domain
     }
 
     /**
-     * Set user
+     * Set Id_user
      *
-     * @param \Crowding\ApiBundle\Entity\User $user
      *
      * @return Domain
      */
-    public function setUser(\Crowding\ApiBundle\Entity\User $user = null)
+    public function setUserId($user_id)
     {
-        $this->user = $user;
+        $this->user_id = $user_id;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get Id_user
      *
-     * @return \Crowding\ApiBundle\Entity\User
      */
-    public function getUser()
+    public function getuserId()
     {
-        return $this->user;
+        return $this->user_id;
     }
 
-    /**
-     * Add lang
-     *
-     * @param \Crowding\ApiBundle\Entity\Lang $lang
-     *
-     * @return Domain
-     */
-    public function addLang(\Crowding\ApiBundle\Entity\Lang $lang)
-    {
-        $this->lang[] = $lang;
 
-        return $this;
-    }
 
-    /**
-     * Remove lang
-     *
-     * @param \Crowding\ApiBundle\Entity\Lang $lang
-     */
-    public function removeLang(\Crowding\ApiBundle\Entity\Lang $lang)
-    {
-        $this->lang->removeElement($lang);
-    }
-
-    /**
-     * Get lang
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLang()
-    {
-        return $this->lang;
-    }
 }
