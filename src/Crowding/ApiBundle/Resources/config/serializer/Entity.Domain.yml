@@ -1,0 +1,24 @@
+Crowding\ApiBundle\Entity\Domain:
+
+    exclusion_policy: All
+    properties:
+        id:
+            groups: ['AllDomain']
+            expose: true
+        slug:
+            groups: ['AllDomain']
+            expose: true
+
+        name:
+            groups: ['AllDomain']
+            expose: true
+
+        description:
+            groups: ['AllDomain']
+            expose: true
+
+        createdAt:
+            expose: true
+
+        user_id :
+            expose: true

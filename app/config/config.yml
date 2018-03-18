@@ -30,8 +30,7 @@ framework:
     assets: ~
     php_errors:
         log: true
-    serializer:
-        enabled: true
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
@@ -92,3 +91,23 @@ fos_rest:
     format_listener:
         rules:
             - { path: ^/, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+    serializer:
+        serialize_null:  true
+        
+
+
+jms_serializer:
+
+  
+    metadata:
+        directories:
+            configuration-database:
+                namespace_prefix: "App\\Entity"
+                path: "%kernel.root_dir%/../src/Crowding/ApiBundle/Resources/config/serializer/"
+        # Using auto-detection, the mapping files for each bundle will be
+        # expected in the Resources/config/serializer directory.
+        #
+        # Example:
+        # class: My\FooBundle\Entity\User
+        # expected path: @MyFooBundle/Resources/config/serializer/Entity.User.(yml|xml|php)
+        auto_detection: true

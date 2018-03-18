@@ -10,6 +10,9 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
+use FOS\RestBundle\Context\Context;
+
 
 class DomainsController extends FOSRestController
 {
@@ -22,12 +25,16 @@ class DomainsController extends FOSRestController
         $repository = $this->getDoctrine()->getRepository('ApiBundle:Domain');
 
         $domain = $repository->findAll();
-/*         $view = $this->view($domain, Response::HTTP_OK);
-        return $view;
- */        
- $view = $this->view($domain, 200);
+        
 
-        // ...
+        $data = [	"code" => 200,
+                "message" => "success",
+                "datas" => $domain
+        ];
+
+
+        $view = $this->view($data, 200);
+        $view->getContext()->setGroups(array('AllDomain'));
 
         return $this->handleView($view);
 
